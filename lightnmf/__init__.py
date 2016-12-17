@@ -5,10 +5,11 @@ from numpy.matrixlib.defmatrix import matrix
 
 
 def cost_function(a, b, l1=False):
-    """Calculates L2-norm cost function.
+    """Calculates cost function.
 
-    This function calculates element-wise sum of square of differences between
-    the original matrix and reconstructed matrix.
+    This function calculates L1-norm (element-wise sum of absolute differences)
+    or L2-norm (element-wise sum of square of differences) between the original
+    matrix and reconstructed matrix.
 
     Args:
         a: A NumPy Matrix object representing the original matrix.
@@ -39,8 +40,8 @@ def factorize(data_matrix, num_of_factors=10, num_of_iterations=100, l1=False):
         extracted.
         num_of_iterations: Number of iterations for multiplicative update
         rules.
-        l1: A boolean indicating whether or not L1 norm should be used instead
-        of L2 norm.
+        l1: A boolean indicating whether or not L1-norm should be used instead
+        of L2-norm for cost function.
 
     Returns:
         A tuple consisting out of weights and features matrices.

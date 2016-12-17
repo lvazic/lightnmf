@@ -18,7 +18,7 @@ def cost_function(a, b, l1=False):
         of L2 norm.
 
     Returns:
-        A double representing the value of cost function
+        A double representing the value of cost function.
     """
     cost = 0
     for i in range(a.shape[0]):
@@ -49,8 +49,10 @@ def factorize(data_matrix, num_of_factors=10, num_of_iterations=100, l1=False):
     if data_matrix[data_matrix < 0]:
         raise ValueError('Matrix contains negative values.')
 
-    w = matrix([[random.random() for i in range(num_of_factors)] for j in range(data_matrix.shape[0])])
-    h = matrix([[random.random() for i in range(data_matrix.shape[1])] for j in range(num_of_factors)])
+    w = matrix([[random.random() for i in range(num_of_factors)]
+                for j in range(data_matrix.shape[0])])
+    h = matrix([[random.random() for i in range(data_matrix.shape[1])]
+                for j in range(num_of_factors)])
 
     for i in range(num_of_iterations):
         cost = cost_function(data_matrix, w * h, l1)

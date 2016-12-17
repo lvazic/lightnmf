@@ -45,6 +45,9 @@ def factorize(data_matrix, num_of_factors=10, num_of_iterations=100, l1=False):
     Returns:
         A tuple consisting out of weights and features matrices.
     """
+    if data_matrix[data_matrix < 0]:
+        raise ValueError('Matrix contains negative values.')
+
     w = matrix([[random.random() for i in range(num_of_factors)] for j in range(data_matrix.shape[0])])
     h = matrix([[random.random() for i in range(data_matrix.shape[1])] for j in range(num_of_factors)])
 

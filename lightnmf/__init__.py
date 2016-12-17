@@ -4,7 +4,7 @@ from numpy import transpose
 from numpy.matrixlib.defmatrix import matrix
 
 
-def cost_function(a, b):
+def cost_function(a, b, l1=False):
     """Calculates L2-norm cost function.
 
     This function calculates element-wise sum of square of differences between
@@ -13,6 +13,8 @@ def cost_function(a, b):
     Args:
         a: A NumPy Matrix object representing the original matrix.
         b: A NumPy Matrix object representing the reconstructed matrix.
+        l1: A boolean indicating whether or not L1 norm should be used instead
+        of L2 norm.
 
     Returns:
         A double representing the value of cost function
@@ -20,11 +22,11 @@ def cost_function(a, b):
     cost = 0
     for i in range(a.shape[0]):
         for j in range(a.shape[1]):
-            cost += pow(a[i, j] - b[i, j], 2)
+            cost += abs(a[i, j] - b[i, j]) if l1 else pow(a[i, j] - b[i, j], 2)
     return cost
 
 
-def factorize(data_matrix, num_of_factors=10, num_of_iterations=100):
+def factorize(data_matrix, num_of_factors=10, num_of_iterations=100, l1=False):
     """Factorizes data matrix and returns weights and factors matrices.
 
     This function initializes weights and factors matrices with random values
@@ -37,6 +39,8 @@ def factorize(data_matrix, num_of_factors=10, num_of_iterations=100):
         extracted.
         num_of_iterations: Number of iterations for multiplicative update
         rules.
+        l1: A boolean indicating whether or not L1 norm should be used instead
+        of L2 norm.
 
     Returns:
         A tuple consisting out of weights and features matrices.
@@ -45,7 +49,7 @@ def factorize(data_matrix, num_of_factors=10, num_of_iterations=100):
     h = matrix([[random.random() for i in range(data_matrix.shape[1])] for j in range(num_of_factors)])
 
     for i in range(num_of_iterations):
-        cost = cost_function(data_matrix, w * h)
+        cost = cost_function(data_matrix, w * h, l1)
         if cost == 0:
             break
         hn = (transpose(w) * data_matrix)

@@ -23,3 +23,8 @@ w, h = lightnmf.factorize(m)
 ```python
 w, h = lightnmf.factorize(m, l1=True)
 ```
+
+## Set desired number of factors and number of iterations for multiplicative update rules
+```python
+w, h = lightnmf.factorize(m, num_of_factors=15, num_of_iterations=2000)
+```

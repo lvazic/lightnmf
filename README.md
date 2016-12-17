@@ -1,7 +1,8 @@
 lightnmf
 ===========
 
-Simple implementation of Non-Negative Matrix Factorization relying on NumPy matrices.
+Simple implementation of Non-Negative Matrix Factorization (NMF) relying on NumPy matrices.
+[More on NMF.](http://vazic.me/non-negative-matrix-factorization-nmf/)
 
 # Installation
 ```bash
